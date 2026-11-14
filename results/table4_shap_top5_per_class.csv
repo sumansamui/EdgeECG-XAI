@@ -1,0 +1,6 @@
+N,S,V,F,Q
+RR_prev,RR_prev,A_T,A_R,A_T
+A_R,A_R,RR_prev,RR_prev,slope_RS
+A_T,slope_RS,A_R,slope_RS,RR_prev
+A_Q,A_T,slope_RS,A_Q,A_R
+slope_RS,A_Q,A_Q,A_T,A_Q
