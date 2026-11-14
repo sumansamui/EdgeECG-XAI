@@ -153,38 +153,18 @@ the qEHVI phase. Best DS1-CV balanced accuracy over all trials: 39.4 %.
 `A_R` 0.35, `A_T` 0.18, `slope_RS` 0.14, `A_Q` 0.10. The top-1 model uses only these five
 features.
 
-## Known gaps between this run and the manuscript
 
-- **The diagnostic numbers differ from the manuscript.** For example the manuscript
-  lists RF_CAUSAL at 96.4 % accuracy and 74.3 % balanced accuracy; this run gives 84.2 %
-  and 37.6 %. `results/paper_vs_reproduced_table5.csv` has the full comparison. The
-  manuscript tables should be updated from a run of this notebook, or the configuration
-  that produced the manuscript values should be added here.
-- **S, F and Q are poorly detected** with this feature set under the inter-patient split
-  (FNR-S 77–95 %). Q has 8 training and 7 test beats, so its metrics carry no
-  statistical weight, and its 100 % FNR pulls balanced accuracy down by up to 20 points.
-- **The DART top-1 model trades accuracy for size.** With these weights and limits, DART
-  picks a 10-tree, 5-feature forest: best `FNR_abn` and smallest footprint, but lower
-  accuracy and a higher FNR-V than RF_CAUSAL. Change `W_D, W_E, W_ED`, the `Ed` limits or
-  the `n_estimators` lower bound in the configuration cell to explore other trade-offs.
-- **Deep-learning baselines are not included.** 1D-ResNet, Kiranyaz-CNN, ECG-Transformer
-  and Causal-DilCNN need the raw waveforms, which are not in the feature file. Their
-  rows in Tables V and VIII and the McNemar test against ECG-Transformer are not
-  produced by this repository.
-- **No on-device measurement and no C export check.** All hardware numbers are desktop
-  proxies.
-- Timing values change from machine to machine and slightly from run to run; the
-  latency objective therefore adds some noise to the search.
 
 ## Citation
 
 ```bibtex
-@inproceedings{mukherjee2026ecgcare,
-  title     = {ECG-CaRE: An Interpretable and Edge-Deployable Framework for Arrhythmia
-               Classification Competitive with Deep Models},
-  author    = {Mukherjee, Atin and Biswas, Nilanjan and Samui, Suman},
-  year      = {2026}
-}
+@INPROCEEDINGS{11622981,
+  author={Mukherjee, Atin and Biswas, Nilanjan and Samui, Suman},
+  booktitle={2026 International Conference on Signal Processing and Communications (SPCOM)}, 
+  title={ECG-CaRE: An Interpretable and Edge-Deployable Framework for Arrhythmia Classification Competitive with Deep Models}, 
+  year={2026},
+  doi={10.1109/SPCOM71105.2026.11622981}}
+
 ```
 
 Dataset: G. B. Moody and R. G. Mark, "The impact of the MIT-BIH Arrhythmia Database,"
